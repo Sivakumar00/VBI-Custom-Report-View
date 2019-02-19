@@ -1,0 +1,108 @@
+<html>
+<style>
+    html { 
+        overflow-x: hidden;
+     }
+    .topnavss {
+        background-color: #3d566e;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between
+    }
+    .divider-summary {
+        background-color: white;
+        height: 30px;
+        width: 100%;
+        border-radius: 10%;
+        display:flex;
+        justify-content:flex;
+        margin: 10px;
+    }
+    .vbi-logo {
+        display: flex;
+        justify-content: center;
+        width: 15%;
+        min-width: 75px;
+        margin-top: .25%
+        
+
+    }
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 13px 18px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        
+    }
+  
+    .vbi-text {
+        display: flex;
+        justify-content:center;
+        text-align: left;
+        align-items:center;
+        width: 100%;
+        size: 25px;
+        color: aliceblue;
+        font-size: 20px;
+        font-weight: bold;
+        min-width: 65px;
+    }
+    </style>
+
+<head>
+    <meta charset="utf-8">
+    <title>REPORT VIEW</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./css/tabulator_bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="topnavss">
+        <div class="vbi-logo">
+            <a href="https://visualbi.com"><img src="logo.png"> </a>
+        </div>
+        <div class="vbi-text">
+            <span>Test Execution Report</span>
+        </div>
+        
+    </div>  
+    <div >
+        
+        <button id="btn-view" type="button" class="btn btn-info form-control" style="margin:5px;" onclick="myFunction()">View Last 5 executions</button>
+        <div id="summary-table" style="margin: 10px" >
+           
+          </div>
+    </div>
+  
+    <div id="example-table" style="margin: 10px 10px 10px">
+
+    </div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js" integrity="sha256-mFypf4R+nyQVTrc8dBd0DKddGB5AedThU73sLmLWdc0="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
+    <script type="text/javascript" src="tabulator.min.js"></script>
+    <script type="text/javascript" src="jquery_wrapper.min.js"></script>
+    <script src="userView.js"></script>
+</body>
+
+</html>

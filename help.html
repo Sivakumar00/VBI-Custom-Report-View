@@ -1,0 +1,300 @@
+<html>
+    <head>
+            <style>
+                    .code{
+                        background-color: black;
+                        padding:20px
+                    }
+                    .topnavss {
+                        background-color: #3d566e;
+                        height: 50px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between
+                    }
+                    .divider-summary {
+                        background-color: white;
+                        height: 30px;
+                        width: 100%;
+                        border-radius: 10%;
+                        display:flex;
+                        justify-content:flex;
+                        margin: 10px;
+                    }
+                    .vbi-logo {
+                        display: flex;
+                        justify-content: center;
+                        width: 15%;
+                        min-width: 75px;
+                        margin-top: .25%
+                        
+                
+                    }
+                    .button {
+                        background-color: #4CAF50; /* Green */
+                        border: none;
+                        color: white;
+                        padding: 13px 18px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        
+                    }
+                  
+                    .vbi-text {
+                        display: flex;
+                        justify-content:center;
+                        text-align: left;
+                        align-items:center;
+                        width: 100%;
+                        size: 25px;
+                        color: aliceblue;
+                        font-size: 20px;
+                        font-weight: bold;
+                        min-width: 65px;
+                    }
+                    </style>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="./css/tabulator_bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="topnavss">
+            <div class="vbi-logo">
+                <a href="https://visualbi.com"><img src="logo.png"> </a>
+            </div>
+            <div class="vbi-text">
+                <span>VBI Report View Docs</span>
+            </div>
+           
+        </div>  
+        <div class="jumbotron">
+         
+            <h4>Step 1:</h4>
+            <p> Download the JAR s from following URL and add to project</p>
+            <ul>
+                <li style="font-size:large">Visit <a href="https://github.com/Sivakumar00/ReportViewJAR">here </a>and Download as ZIP</li>
+                <li style="font-size:large">Extract the ZIP</li>
+                <li style="font-size:large">You can add the JARs into project by,<br> In Katalon Studio, Project -> Settings -> External Libraries</li>
+                <li style="font-size:large">Click add button to browse the JAR location</li>
+                <li style="font-size:large">Click "Apply" and restart the Katalon Studio</li>
+            </ul>
+            <h4>Step 2:</h4>
+            <p> Create a new Test listener in Katalon studio.</p>
+            <h4>Step 4:</h4>
+            <p>Copy and paste the following code in created test listener</p>
+            <div class="code" >
+                <p style="color:#ffffff;font-family:monospace;font-size: medium; margin-left: 20px;margin-top: 20px;margin-right: 20px;margin-right: 20px; font-size: 15px">
+                        import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint<br>
+                        import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase<br>
+                        import static com.kms.katalon.core.testdata.TestDataFactory.findTestData<br>
+                        import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject<br>
+                        import com.kms.katalon.core.checkpoint.Checkpoint as Checkpoint<br>
+                        import com.kms.katalon.core.model.FailureHandling as FailureHandling<br>
+                        import com.kms.katalon.core.testcase.TestCase as TestCase<br>
+                        import com.kms.katalon.core.testdata.TestData as TestData<br>
+                        import com.kms.katalon.core.testobject.TestObject as TestObject<br>
+                        import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS<br>
+                        import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI<br>
+                        import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile<br>
+                        import internal.GlobalVariable as GlobalVariable<br>
+                        import java.awt.Desktop;<br>
+                        import java.net.URI;<br>
+                        import java.text.SimpleDateFormat;<br>
+                        import com.kms.katalon.core.annotation.BeforeTestCase<br>
+                        import com.kms.katalon.core.annotation.BeforeTestSuite<br>
+                        import com.kms.katalon.core.annotation.AfterTestCase<br>
+                        import com.kms.katalon.core.annotation.AfterTestSuite<br>
+                        import com.kms.katalon.core.context.TestCaseContext<br>
+                        import com.kms.katalon.core.context.TestSuiteContext<br>
+                        import com.kms.katalon.core.configuration.RunConfiguration<br>
+                        import com.mongodb.BasicDBObject;<br>
+                        import com.mongodb.BulkWriteOperation;<br>
+                        import com.mongodb.BulkWriteResult;<br>
+                        import com.mongodb.Cursor;<br>
+                        import com.mongodb.DB;<br>
+                        import com.mongodb.MongoClientURI;<br>
+                        import com.mongodb.DBCollection;<br>
+                        import com.mongodb.DBCursor;<br>
+                        import com.mongodb.DBObject;<br>
+                        import com.mongodb.MongoClient;<br>
+                        import com.mongodb.ParallelScanOptions;<br>
+                        import com.mongodb.ServerAddress;<br>
+                        import java.sql.Timestamp;<br>
+                        import org.json.simple.JSONObject;<br>
+                        import java.util.HashMap;<br>
+                        import java.util.Map;<br>
+                        import org.json.simple.JSONValue;<br>
+                        import org.json.simple.JSONArray;<br>
+                        import java.util.concurrent.TimeUnit;<br>
+                        import com.mongodb.MongoException;<br>
+                        import com.mongodb.util.JSON;<br>
+                        <br>
+                        class NewTestListener{<br>
+                            <br>
+                            String hostName,browser,OS,hostAddress,version,suiteId, suiteStatus, suiteStartTime,suiteEndTime,passedOutOf;<br>
+                            boolean isPassed;<br>
+                            int passed,total,runId;<br>
+                            String testCaseId,testCaseStatus,testCaseStart, testCaseEnd,testCaseMessage; <br>
+                            JSONObject map; //testCaseObejct<br>
+                            JSONArray testCaseArray;<br>
+                            JSONObject testSuiteObject;
+                            Timestamp tSuiteStart,tSuiteEnd,tCaseStart,tCaseEnd;<br>
+                            <br>
+                            @BeforeTestSuite<br>
+                            def sampleBeforeTestSuite(TestSuiteContext testSuiteContext) {<br>
+                                println testSuiteContext.getTestSuiteId()<br>
+                                <br>
+                                //init<br>
+                                <br>
+                                tSuiteStart = new Timestamp( System.currentTimeMillis());<br>
+                                testCaseArray = new JSONArray();<br>
+                                testSuiteObject = new JSONObject();<br>
+                                <br>
+                                //data<br>
+                                <br>
+                                //SivakumarA - VISUALBI-D060.mshome.net<br>
+                                Map m = RunConfiguration.getExecutionProperties()<br>
+		                        browser = m.get("drivers").get("system").get("WebUI").get("browserType");<br>
+                                hostName =RunConfiguration.getHostName();<br>
+                                hostName = hostName.substring(0,hostName.indexOf("."));<br>
+                                hostName = hostName.replace(" ", "");<br>
+                                OS =RunConfiguration.getOS();<br>
+                                hostAddress = RunConfiguration.getHostAddress();<br>
+                                suiteId= testSuiteContext.getTestSuiteId();<br>
+                                suiteStartTime = tSuiteStart.toString();<br>
+                                version=RunConfiguration.getAppVersion();<br>
+                                <br>
+                            }<br>
+                            
+                            @BeforeTestCase<br>
+                            def sampleBeforeTestCase(TestCaseContext testCaseContext) {<br>
+                                <br>
+                                if(hostName!=null){<br>
+                                    tCaseStart = new Timestamp( System.currentTimeMillis());<br>
+                                    //data<br>
+                                    map =new JSONObject();<br>
+                                    testCaseId = testCaseContext.getTestCaseId();<br>
+                                    testCaseStart = tCaseStart.toString();<br>
+                                }<br>
+                            }<br>
+                        
+                            
+                            
+                            @AfterTestCase<br>
+                            def sampleAfterTestCase(TestCaseContext testCaseContext) {<br>
+                                if(hostName!=null){<br>
+                                    tCaseEnd = new Timestamp( System.currentTimeMillis());<br>
+                                    testCaseEnd =tCaseEnd.toString();<br>
+                                    testCaseMessage = testCaseContext.getMessage();<br>
+                                    testCaseStatus = testCaseContext.getTestCaseStatus()<br>
+                                    total+=1;<br>
+                                    if(testCaseStatus =="PASSED"){<br>
+                                        isPassed =true;<br>
+                                        passed+=1;<br>
+                                    }else{<br>
+                                        isPassed = false;
+                                    }<br>
+                                    
+                                    //JSON encoding<br>
+                                    map.put("testCaseID",testCaseId);<br>
+                                    map.put("testCaseStatus",isPassed);<br>
+                                
+                                    map.put("testCaseMessage",testCaseMessage);<br>
+                                    map.put("testCaseStart",testCaseStart);<br>
+                                    map.put("testCaseTotalTime",diffTime(testCaseStart,testCaseEnd));<br>
+                                    map.put("testCaseEnd",testCaseEnd);<br>
+                                
+                                    
+                                    testCaseArray.add(map);<br>
+                                
+                                map=null;<br>
+                                }<br>
+                            }<br>
+                            <br>
+                        
+                            @AfterTestSuite<br>
+                            def sampleAfterTestSuite(TestSuiteContext testSuiteContext) {<br>
+                                println testSuiteContext.getTestSuiteId()<br>
+                                
+                                
+                                tSuiteEnd = new Timestamp(System.currentTimeMillis());<br>
+                                suiteEndTime = tSuiteEnd.toString();<br>
+                                //data<br>
+                                diffTime(suiteStartTime,suiteEndTime);<br>
+                                suiteStatus = testSuiteContext.getStatus();<br>
+                                
+                                //MongoDB<br>
+                                MongoClientURI mongoClientURI = new MongoClientURI("mongodb://10.0.1.112:27017/test_report");<br>
+                                MongoClient mongo = new MongoClient(mongoClientURI);<br>
+                                DB db = mongo.getDB("test_report");<br>
+                                Set<String> collections = db.getCollectionNames();<br>
+                                System.out.println(collections);<br>
+                                DBCollection collection = db.getCollection("test_report");<br>
+                                runId=collection.count()+1;<br>
+                                System.out.println("runID: "+runId);<br>
+                                <br>
+                                //JSON Encoding<br>
+                                testSuiteObject.put("runId",runId);<br>
+                                testSuiteObject.put("hostName",hostName );<br>
+                                testSuiteObject.put("browser",browser);<br>
+                                testSuiteObject.put("hostAddress",hostAddress);<br>
+                                testSuiteObject.put("OS",OS);<br>
+                                testSuiteObject.put("version",version);<br>
+                                testSuiteObject.put("suiteId",suiteId);<br>
+                                testSuiteObject.put("suiteStatus",suiteStatus);<br>
+                                testSuiteObject.put("suiteStartTime",suiteStartTime);<br>
+                                testSuiteObject.put("suiteDate",suiteEndTime.substring(0,suiteEndTime.indexOf(" ")));<br>
+                                testSuiteObject.put("suiteTotalTime",diffTime(suiteStartTime,suiteEndTime));<br>
+                                testSuiteObject.put("suiteEndTime",suiteEndTime);<br>
+                                testSuiteObject.put("testCases",testCaseArray);
+                                testSuiteObject.put("passedOutOf",passed+" / "+total);<br>
+                                testSuiteObject.put("totalTestCase",total);<br>
+                                testSuiteObject.put("testCasePassed",passed);<br>
+                                testSuiteObject.put("testCaseFailed",total - passed);<br>
+                                <br>
+                                 String jsonText = JSONValue.toJSONString(testSuiteObject);  <br>
+                                System.out.println(jsonText); <br>
+                                
+                                
+                                DBObject dbObject = (DBObject) JSON.parse(jsonText);<br>
+                                collection.insert(dbObject);<br>
+                            
+                            }<br>
+                            public String diffTime(String time1,String time2){<br>
+                                
+                         
+                                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");<br>
+                                Date date1 = format.parse(time1);<br>
+                                Date date2 = format.parse(time2);<br>
+                                long difference = date2.getTime() - date1.getTime();<br>
+                                 return (difference/1000);<br>
+                                
+                            }<br>
+                        }<br>
+                        
+                </p>
+               
+            </div>
+            
+            <h4 style="margin-top:20px">Step 3:</h4>
+            <p>Save it and Run the TestSuites.</p>
+        </div>
+
+
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js" integrity="sha256-mFypf4R+nyQVTrc8dBd0DKddGB5AedThU73sLmLWdc0="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
+    
+    </body>
+</html>
